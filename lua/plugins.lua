@@ -62,6 +62,11 @@ require('packer').startup(function(use)
     module = { 'tmux' },
     config = function() require('plugins.tmux').config() end
   }
+  use {
+    'mhartington/formatter.nvim',
+    cmd = { 'Format', 'FormatWrite' },
+    config = function() require('plugins.formatter') end
+  }
 
   -- comfort
   if vars.enable.comfort == true then
