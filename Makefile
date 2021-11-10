@@ -15,7 +15,7 @@ all: help
 ci: fmt_check lint
 
 .PHONY: install
-install: ## Install the project.
+install: ## Download the plugins, parsers and LSP servers.
 	@nvim --headless $(_PACKER_PREAMBULE) -c 'PackerSync'
 	@nvim --headless -c 'TSInstall! $(_TS_PARSER_LIST)'
 	@nvim --headless -c 'LspInstall $(_LSP_INSTALLER_LIST)'
@@ -26,7 +26,7 @@ dev_install: ## Install the development tools.
 	@luarocks install --server=https://luarocks.org/dev luaformatter
 
 .PHONY: update
-update: ## Update the project.
+update: ## Update the plugins and parsers.
 	@nvim --headless $(_PACKER_PREAMBULE) -c 'PackerUpdate'
 	@nvim --headless -c 'TSUpdate $(_TS_PARSER_LIST)'
 
@@ -56,7 +56,7 @@ test: ## Run the tests.
 		-c "PlenaryBustedDirectory lua/tests/utils { minimal_init = './scripts/test_init.vim' }"
 
 .PHONY: clean
-clean: ## Clean the project.
+clean: ## Remove the plugins, parsers and LSP servers.
 	rm -f plugin/packer_compiled.lua
 	rm -fr $(HOME)/.local/share/nvim/{site/pack,lsp_servers,tree-sitter*}
 
