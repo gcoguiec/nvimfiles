@@ -3,7 +3,7 @@
 _FIND_ARGS := -type f -name '*.lua' -not -path '*plugin/packer_compiled.lua' \
 	-not -path '*.luarocks/*' -not -path '*.install/*' -print0
 _PACKER_PREAMBULE := -c 'autocmd User PackerComplete quitall'
-_TS_PARSER_LIST := comment dockerfile elixir erlang go graphql hcl java javascript\
+_TS_PARSER_LIST := comment c dockerfile elixir erlang go graphql hcl java javascript\
 	json5 julia kotlin llvm nix python ruby r rust scss svelte swift toml tsx typescript\
 	verilog vue yaml zig
 _LSP_INSTALLER_LIST := dockerls elixirls terraformls yamlls eslint zls graphql\
