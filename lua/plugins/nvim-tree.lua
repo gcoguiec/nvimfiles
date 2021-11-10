@@ -94,7 +94,7 @@ require('nvim-tree').setup {
   update_focused_file = {
     enable = true,
     update_cwd = false,
-    ignore_list = { 'fzf', 'help', 'git' }
+    ignore_list = { 'help', 'git' }
   },
   update_to_buf_dir = { enable = true, auto_open = true },
   ignore_ft_on_setup = { 'git', 'man', 'help' },
@@ -113,5 +113,5 @@ require('nvim-tree').setup {
       list = { { key = { '<CR>', '<2-LeftMouse>' }, cb = tree_cb('edit') } }
     }
   },
-  filters = { dotfiles = false, custom = { 'node_modules', 'dist' } }
+  filters = { dotfiles = true, custom = { 'node_modules', 'dist' } }
 }
