@@ -1,0 +1,15 @@
+column_limit: 80
+indent_width: 2
+tab_width: 2
+continuation_indent_width: 2
+spaces_before_call: 1
+keep_simple_control_block_one_line: true
+keep_simple_function_one_line: true
+spaces_inside_table_braces: true
+chop_down_table: true
+chop_down_kv_table: true
+chop_down_parameter: true
+align_args: false
+align_parameter: false
+align_table_field: false
+double_quote_to_single_quote: true

@@ -1,0 +1,69 @@
+name: Tests
+
+on:
+  push:
+    branches:
+      - main
+    pull_request:
+
+jobs:
+  lint:
+    name: Lint
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v2
+      - name: Prepare
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y luarocks
+          sudo luarocks install luacheck
+          sudo luarocks install --server=https://luarocks.org/dev luaformatter
+      - name: Lint
+        run: sudo make lint fmt_check
+
+  unit_tests:
+    name: Unit Tests
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: ubuntu-latest
+            url: https://github.com/neovim/neovim/releases/download/nightly/nvim-linux64.tar.gz
+            manager: sudo apt-get
+            packages: -y fd-find
+          - os: ubuntu-latest
+            url: https://github.com/neovim/neovim/releases/download/v0.5.1/nvim-linux64.tar.gz
+            manager: sudo apt-get
+            packages: -y fd-find
+          - os: macos-11
+            url: https://github.com/neovim/neovim/releases/download/nightly/nvim-macos.tar.gz
+            manager: brew
+            packages: fd
+          - os: macos-11
+            url: https://github.com/neovim/neovim/releases/download/v0.5.1/nvim-macos.tar.gz
+            manager: brew
+            packages: fd
+    steps:
+      - uses: actions/checkout@v2
+      - run: date +%F > todays-date
+      - name: Restore cache for today's nightly.
+        uses: actions/cache@v2
+        with:
+          path: build
+          key: ${{ runner.os }}-appimage-${{ hashFiles('todays-date') }}
+      - name: Prepare
+        run: |
+          ${{ matrix.manager }} update
+          ${{ matrix.manager }} install ${{ matrix.packages }}
+          test -d _neovim || {
+            mkdir -p _neovim
+            curl -sL ${{ matrix.url }} | tar xzf - --strip-components=1 -C "${PWD}/_neovim"
+          }
+          make install
+      - name: Run tests
+        run: |
+          export PATH="${PWD}/_neovim/bin:${PATH}"
+          export VIM="${PWD}/_neovim/share/nvim/runtime"
+          nvim --version
+          make test
