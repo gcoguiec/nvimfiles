@@ -9,17 +9,23 @@ on:
 jobs:
   lint:
     name: Lint
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+      - run: date +%F > todays-date
+      - name: Restore cache for today's nightly.
+        uses: actions/cache@v2
+        with:
+          path: |
+            .install
+            .luarocks
+          key: ${{ runner.os }}-lint-${{ hashFiles('todays-date') }}
+      - uses: leafo/gh-actions-lua@v8
+      - uses: leafo/gh-actions-luarocks@v4
       - name: Prepare
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y luarocks
-          sudo luarocks install luacheck
-          sudo luarocks install --server=https://luarocks.org/dev luaformatter
+        run: make dev_install
       - name: Lint
-        run: sudo make lint fmt_check
+        run: make lint fmt_check
 
   unit_tests:
     name: Unit Tests
@@ -31,19 +37,15 @@ jobs:
           - os: ubuntu-latest
             url: https://github.com/neovim/neovim/releases/download/nightly/nvim-linux64.tar.gz
             manager: sudo apt-get
-            packages: -y fd-find
           - os: ubuntu-latest
             url: https://github.com/neovim/neovim/releases/download/v0.5.1/nvim-linux64.tar.gz
             manager: sudo apt-get
-            packages: -y fd-find
           - os: macos-11
             url: https://github.com/neovim/neovim/releases/download/nightly/nvim-macos.tar.gz
             manager: brew
-            packages: fd
           - os: macos-11
             url: https://github.com/neovim/neovim/releases/download/v0.5.1/nvim-macos.tar.gz
             manager: brew
-            packages: fd
     steps:
       - uses: actions/checkout@v2
       - run: date +%F > todays-date
@@ -55,12 +57,13 @@ jobs:
       - name: Prepare
         run: |
           ${{ matrix.manager }} update
-          ${{ matrix.manager }} install ${{ matrix.packages }}
           test -d _neovim || {
             mkdir -p _neovim
             curl -sL ${{ matrix.url }} | tar xzf - --strip-components=1 -C "${PWD}/_neovim"
           }
-          make install
+          mkdir -p ~/.local/share/nvim/site/pack/vendor/start
+          git clone --depth 1 https://github.com/nvim-lua/plenary.nvim \
+            ~/.local/share/nvim/site/pack/vendor/start/plenary.nvim
       - name: Run tests
         run: |
           export PATH="${PWD}/_neovim/bin:${PATH}"

@@ -5,7 +5,9 @@ stds.nvim = {
 }
 
 exclude_files = {
-  'plugin/**'
+  'plugin/**',
+  '.install/**',
+  '.luarocks/**'
 }
 
 globals = {

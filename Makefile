@@ -1,6 +1,7 @@
 .EXPORT_ALL_VARIABLES:
 
-_FIND_ARGS := -type f -name '*.lua' -not -path '*plugin/packer_compiled.lua' -print0
+_FIND_ARGS := -type f -name '*.lua' -not -path '*plugin/packer_compiled.lua' \
+	-not -path '*.luarocks/*' -not -path '*.install/*' -print0
 _PACKER_PREAMBULE := -c 'autocmd User PackerComplete quitall'
 _TS_PARSER_LIST := comment dockerfile elixir erlang go graphql hcl java javascript\
 	json5 julia kotlin llvm nix python ruby r rust scss svelte swift toml tsx typescript\
@@ -47,7 +48,7 @@ fmt_check:
 
 .PHONY: lint
 lint: ## Lint the code-base.
-	@luacheck .
+	@luacheck lua init.lua
 
 .PHONY: test
 test: ## Run the tests.

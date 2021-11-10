@@ -8,6 +8,12 @@
   My Neovim files.
 </p>
 
+<p align="center">
+  <a href="https://github.com/gcoguiec/nvimfiles/actions/workflows/ci.yml">
+    <img src="https://github.com/gcoguiec/nvimfiles/actions/workflows/ci.yml/badge.svg" alt="GitHub Actions Status"/>
+  </a>
+</p>
+
 <hr>
 
 ## License
