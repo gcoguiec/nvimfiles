@@ -7,14 +7,14 @@ local luasnip = require('luasnip')
 local lspkind = require('lspkind')
 
 -- highlights
-li('CmpDocumentation', 'NormalFloat')
-li('CmpDocumentationBorder', 'FloatBorder')
+li('CmpDocumentation', 'PMenu')
+hi('CmpDocumentationBorder', colors.bg0)
 hi('CmpItemAbbr', colors.text0)
 hi('CmpItemAbbrDeprecated', colors.periwinkle)
 hi('CmpItemAbbrMatch', colors.gold)
 hi('CmpItemAbbrMatchFuzzy', colors.gold)
-li('CmpItemMenu', 'NormalFloat')
-hi('CmpItemKind', colors.biloba_flower)
+hi('CmpItemMenu', nil, colors.bg0)
+hi('CmpItemKind', colors.secondary)
 
 cmp.setup {
   snippet = { expand = function(args) luasnip.lsp_expand(args.body) end },
