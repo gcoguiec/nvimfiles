@@ -16,6 +16,23 @@
 
 <hr>
 
+## Table of Contents
+
+- [Features](#features)
+- [Previews](#previews)
+- [License](#license)
+
+## Features
+
+* ~200ms startup time (even less once cached with [Impatient](https://github.com/lewis6991/impatient.nvim)).
+* Full [LSP](https://neovim.io/doc/user/lsp.html) support (go-to-definition, find-references, refactor and smart autocompletion).
+* Incremental syntax parsing and highlighting via [Tree-sitter](https://github.com/nvim-treesitter/nvim-treesitter).
+* A blazing fast fuzzy finder using [Telescope](https://github.com/nvim-telescope/telescope.nvim) and [fzf](https://github.com/junegunn/fzf).
+* Integration with the most popular static code analysis tools (eslint, rust_analyzer and more).
+* Plugin management via [Packer](https://github.com/wbthomason/packer.nvim).
+* A [Shade of Purple](https://github.com/ahmadawais/shades-of-purple-vscode)-like look and feel.
+* And a boatload of very opinioned tweaks.
+
 ## Previews
 
 <p align="center">
