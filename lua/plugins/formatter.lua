@@ -72,7 +72,14 @@ local opts = {
     typescriptreact = { prettier('typescript') },
     ['typescriptreact.tsx'] = { prettier('typescript') },
     go = {
-      function() return { exe = 'gofmt', args = { '-w' }, stdin = false } end,
+      function()
+        return {
+          exe = 'gofmt',
+          args = { '-w' },
+          tempfile_postfix = '.tmp',
+          stdin = false
+        }
+      end,
       function()
         return { exe = 'goimports', args = { '-w' }, stdin = false }
       end
