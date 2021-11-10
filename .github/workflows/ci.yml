@@ -25,7 +25,7 @@ jobs:
       - name: Prepare
         run: make dev_install
       - name: Lint
-        run: make lint fmt_check
+        run: make ci
 
   unit_tests:
     name: Unit Tests
