@@ -16,19 +16,19 @@ ci: fmt_check lint
 
 .PHONY: install
 install: ## Download the plugins, parsers and LSP servers.
-	@nvim --headless $(_PACKER_PREAMBULE) -c 'PackerSync'
-	@nvim --headless -c 'TSInstall! $(_TS_PARSER_LIST)'
-	@nvim --headless -c 'LspInstall $(_LSP_INSTALLER_LIST)'
+	nvim --headless $(_PACKER_PREAMBULE) -c 'PackerSync'
+	nvim --headless -c 'TSInstall! $(_TS_PARSER_LIST)'
+	nvim --headless -c 'LspInstall $(_LSP_INSTALLER_LIST)'
 
 .PHONY: dev_install
 dev_install: ## Install the development tools.
-	@luarocks install luacheck
-	@luarocks install --server=https://luarocks.org/dev luaformatter
+	luarocks install luacheck
+	luarocks install --server=https://luarocks.org/dev luaformatter
 
 .PHONY: update
 update: ## Update the plugins and parsers.
-	@nvim --headless $(_PACKER_PREAMBULE) -c 'PackerUpdate'
-	@nvim --headless -c 'TSUpdate $(_TS_PARSER_LIST)'
+	nvim --headless $(_PACKER_PREAMBULE) -c 'PackerUpdate'
+	nvim --headless -c 'TSUpdate $(_TS_PARSER_LIST)'
 
 .PHONY: link
 link: ## Link the project.
