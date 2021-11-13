@@ -19,7 +19,7 @@
     <img src="https://img.shields.io/badge/Neovim-0.5+-blueviolet.svg?style=flat-square&logo=Neovim&logoColor=white"
          alt="Neovim Version"/>
   </a>
-  <a href="https://github.com/gcoguiec/nvimfiles/blob/main/LICENSE">
+  <a href="https://github.com/gcoguiec/nvimfiles/blob/main/LICENSE.md">
     <img src="https://img.shields.io/github/license/gcoguiec/nvimfiles?style=flat-square&label=License"
          alt="License"/>
   </a>
@@ -31,6 +31,7 @@
 
 - [Features](#features)
 - [Previews](#previews)
+- [Dependencies](#dependencies)
 - [Installation](#installation)
 - [License](#license)
 
