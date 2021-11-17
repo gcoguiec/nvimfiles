@@ -35,14 +35,8 @@ jobs:
       matrix:
         include:
           - os: ubuntu-latest
-            url: https://github.com/neovim/neovim/releases/download/nightly/nvim-linux64.tar.gz
-            manager: sudo apt-get
-          - os: ubuntu-latest
             url: https://github.com/neovim/neovim/releases/download/v0.5.1/nvim-linux64.tar.gz
             manager: sudo apt-get
-          - os: macos-11
-            url: https://github.com/neovim/neovim/releases/download/nightly/nvim-macos.tar.gz
-            manager: brew
           - os: macos-11
             url: https://github.com/neovim/neovim/releases/download/v0.5.1/nvim-macos.tar.gz
             manager: brew
