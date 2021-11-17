@@ -96,6 +96,7 @@ config.concealcursor = 'niv'
 config.formatoptions = '1jcroql'
 config.synmaxcol = 1000
 config.breakindentopt = 'shift:2,min:20'
+config.shell = '/usr/local/bin/zsh'
 
 -- directories
 config.directory = vars.cache_dir .. 'swap/'
