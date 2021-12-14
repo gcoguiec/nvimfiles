@@ -113,5 +113,5 @@ require('nvim-tree').setup {
       list = { { key = { '<CR>', '<2-LeftMouse>' }, cb = tree_cb('edit') } }
     }
   },
-  filters = { dotfiles = true, custom = { 'node_modules', 'dist' } }
+  filters = { dotfiles = false, custom = { 'node_modules', 'dist' } }
 }
