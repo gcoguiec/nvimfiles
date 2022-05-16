@@ -6,12 +6,15 @@ local handlers = {}
 
 function handlers.toggle_tree()
   require('nvim-tree').toggle()
-  if require('nvim-tree.view').win_open() then
-    require('bufferline.state').set_offset(vars.tree_width + 3,
-      vars.tree_offset_label)
-    require('nvim-tree').find_file(true)
-    return
-  end
+end
+
+function handlers.handle_tree_open()
+  require('bufferline.state').set_offset(vars.tree_width + 3,
+    vars.tree_offset_label)
+  require('nvim-tree').find_file(true)
+end
+
+function handlers.handle_tree_close()
   require('bufferline.state').set_offset(0)
 end
 

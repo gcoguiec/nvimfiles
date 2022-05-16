@@ -8,16 +8,13 @@ local tree_cb = require('nvim-tree.config').nvim_tree_callback
 local events = require('nvim-tree.events')
 
 -- globals
-global.nvim_tree_gitignore = 1
 global.nvim_tree_git_hl = 1
-global.nvim_tree_indent_markers = 0
 global.nvim_tree_show_icons = {
   git = 0,
   folders = 1,
   files = 1,
   folder_arrows = 1
 }
-global.nvim_tree_window_picker_exclude = { filetype = { 'packer' } }
 global.nvim_tree_special_files = {}
 global.nvim_tree_icons = {
   default = '',
@@ -82,11 +79,12 @@ map('n', '<leader>F', '<cmd>NvimTreeFindFile<cr>',
 
 -- events
 events.on_nvim_tree_ready(function() require('handlers').toggle_tree() end)
+events.on_tree_open(function() require('handlers').handle_tree_open() end)
+events.on_tree_close(function() require('handlers').handle_tree_close() end)
 
 require('nvim-tree').setup {
   disable_netrw = true,
   hijack_netrw = true,
-  auto_close = true,
   open_on_setup = true,
   open_on_tab = true,
   update_cwd = false,
@@ -113,5 +111,20 @@ require('nvim-tree').setup {
       list = { { key = { '<CR>', '<2-LeftMouse>' }, cb = tree_cb('edit') } }
     }
   },
-  filters = { dotfiles = false, custom = { 'node_modules', 'dist' } }
+  actions = {
+    open_file = {
+      window_picker = {
+        exclude = { filetype = { 'packer' } }
+      }
+    }
+  },
+  git = {
+    ignore = true
+  },
+  renderer = {
+    indent_markers = {
+      enable = false
+    }
+  },
+  filters = { dotfiles = true, custom = { 'node_modules', 'dist' } }
 }
