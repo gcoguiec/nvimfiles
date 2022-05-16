@@ -112,19 +112,9 @@ require('nvim-tree').setup {
     }
   },
   actions = {
-    open_file = {
-      window_picker = {
-        exclude = { filetype = { 'packer' } }
-      }
-    }
+    open_file = { window_picker = { exclude = { filetype = { 'packer' } } } }
   },
-  git = {
-    ignore = true
-  },
-  renderer = {
-    indent_markers = {
-      enable = false
-    }
-  },
+  git = { ignore = true },
+  renderer = { indent_markers = { enable = false } },
   filters = { dotfiles = true, custom = { 'node_modules', 'dist' } }
 }

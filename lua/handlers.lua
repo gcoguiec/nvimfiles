@@ -4,9 +4,7 @@ local vars = require('vars')
 
 local handlers = {}
 
-function handlers.toggle_tree()
-  require('nvim-tree').toggle()
-end
+function handlers.toggle_tree() require('nvim-tree').toggle() end
 
 function handlers.handle_tree_open()
   require('bufferline.state').set_offset(vars.tree_width + 3,
@@ -14,9 +12,7 @@ function handlers.handle_tree_open()
   require('nvim-tree').find_file(true)
 end
 
-function handlers.handle_tree_close()
-  require('bufferline.state').set_offset(0)
-end
+function handlers.handle_tree_close() require('bufferline.state').set_offset(0) end
 
 function handlers.toggle_diag()
   if global.diagnostics_active == true then

@@ -16,7 +16,7 @@
          alt="GitHub Actions Status"/>
   </a>
   <a href="https://github.com/neovim/neovim">
-    <img src="https://img.shields.io/badge/Neovim-0.5+-blueviolet.svg?style=flat-square&logo=Neovim&logoColor=white"
+    <img src="https://img.shields.io/badge/Neovim-0.7+-blueviolet.svg?style=flat-square&logo=Neovim&logoColor=white"
          alt="Neovim Version"/>
   </a>
   <a href="https://github.com/gcoguiec/nvimfiles/blob/main/LICENSE.md">
@@ -68,7 +68,7 @@
 
 ## Dependencies
 
-- Neovim 0.5+
+- Neovim 0.7+
 - [ripgrep](https://github.com/BurntSushi/ripgrep)
 
 ## Installation

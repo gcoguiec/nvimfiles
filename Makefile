@@ -52,8 +52,8 @@ lint: ## Lint the code-base.
 
 .PHONY: test
 test: ## Run the tests.
-	@nvim --headless -u scripts/test_init.vim\
-		-c "PlenaryBustedDirectory lua/tests/utils { minimal_init = './scripts/test_init.vim' }"
+	@nvim --headless --noplugin -u scripts/test_init.vim\
+		-c "PlenaryBustedDirectory lua/tests/utils { minimal_init = './scripts/minimal_init.vim' }"
 
 .PHONY: clean
 clean: ## Remove the plugins, parsers and LSP servers.
